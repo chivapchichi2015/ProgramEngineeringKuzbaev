@@ -1,35 +1,240 @@
-# ProgramEngineeringKuzbaev
-# Тема 1. Работа с репозиториями
-Отчет по Теме#1 выполнил:
+# Тема 6. Базовые коллекции: словари, кортежи.
+### Отчет по Теме #6 выполнил:
 - Кузбаев Темирлан Ерэкович
 - ПИЭ-21-2
-  
-| Задание | Скриншоты |
-| ------ | ------ |
-| Задание 1 | + | 
-| Задание 2 | + |
-| Задание 3 | + | 
-| Задание 4 | + | 
-| Задание 5 | + |
-| Задание 6 | + |
-| Задание 7 | + |
-| Задание 8 | + |
-| Задание 9 | + |
-| Задание 10 | + |
-| Задание 11 | + |
-| Задание 12 | + |
-| Задание 13 | + |
-| Задание 14 | + |
-| Задание 15 | - |
 
-![1](https://github.com/chivapchichi2015/ProgramEngineeringKuzbaev/assets/147660342/e1fe724a-1ca1-4d16-a453-f125927dc1b7)
-![2](https://github.com/chivapchichi2015/ProgramEngineeringKuzbaev/assets/147660342/68e0b21e-92b6-4e7d-b125-65ee5a23e40f)
-![3](https://github.com/chivapchichi2015/ProgramEngineeringKuzbaev/assets/147660342/75dea9c3-71c1-40a5-a0a5-f4d63ad8ce64)
-![4](https://github.com/chivapchichi2015/ProgramEngineeringKuzbaev/assets/147660342/3dc64071-95f9-4219-b108-4bfd748b5e04)
-![5](https://github.com/chivapchichi2015/ProgramEngineeringKuzbaev/assets/147660342/75011dbe-7776-44dd-a9b8-f78c07633995)
-![6](https://github.com/chivapchichi2015/ProgramEngineeringKuzbaev/assets/147660342/3f20a49c-bc9b-4ec2-870a-b2a3bbdaf26a)
-![7](https://github.com/chivapchichi2015/ProgramEngineeringKuzbaev/assets/147660342/42cf10cd-1e8b-4dc0-8279-0e8cf7293161)
-![8](https://github.com/chivapchichi2015/ProgramEngineeringKuzbaev/assets/147660342/6f57bd1d-e64b-462e-9c34-5e3eb2eeabe6)
-![9](https://github.com/chivapchichi2015/ProgramEngineeringKuzbaev/assets/147660342/b02f8911-c03e-4634-a05b-a57ca9a9e9fc)
-![10](https://github.com/chivapchichi2015/ProgramEngineeringKuzbaev/assets/147660342/38ca75bc-6c12-4683-829d-8d9369894f66)
-![11](https://github.com/chivapchichi2015/ProgramEngineeringKuzbaev/assets/147660342/d77e8e7b-2abd-452e-ab78-f4e4dad29aa2)
+| Задание | Лаб. раб. | Сам. раб. |
+| ------ | ------ | ------ |
+| Задание 1 | + | + |
+| Задание 2 | + | + |
+| Задание 3 | + | + |
+| Задание 4 | + | + |
+| Задание 5 | + | + |
+
+Работу проверили:
+- к.э.н., доцент Панов М.А.
+
+## Лабораторная работа №1
+## Задание №1
+### В школе, где вы учились, узнали, что вы крутой программист и попросили написать программу для учителей, которая будет при вводе кабинета писать для него ключ доступа и статус, занят кабинет или нет. При написании программы необходимо использовать словарь (dict), который на вход получает номер кабинета, а выводит необходимую информацию. Если кабинета, который вы ввели нет в словаре, то в консоль в виде значения ключа нужно вывести “None” и виде статуса вывести “False”.
+#### Выполнение:
+```python
+request = int(input('Введите номер кабинета: '))
+
+dictionary = {
+    101: {'key': 1234, 'access': True},
+    102: {'key': 1337, 'access': True},
+    103: {'key': 8943, 'access': True},
+    104: {'key': 5555, 'access': False},
+    None: {'key': None, 'access': False},
+}
+
+response = dictionary.get(request)
+if not response:
+    response = dictionary[None]
+key = response.get('key')
+acess = response.get('access')
+print(key, acess)
+```
+#### Результат:
+![image](https://github.com/legendarykk/Programmnaya_Inzheneriya/assets/146570109/96c254ba-bd03-4522-8ec5-2abd8910a95b)
+
+## Задание №2
+### Алексей решил создать самый большой словарь в мире. Для этого он придумал функцию dict_maker (**kwargs), которая принимает неограниченное количество параметров «ключ: значение» и обновляет созданный им словарь my_dict, состоящий всего из одного элемента «first» со значением «so easy». Помогите Алексею создать данную функцию.
+#### Выполнение:
+```python
+from pprint import pprint
+
+my_dict = {'first': 'so easy'}
+
+def dict_maker(**kwargs):
+    my_dict.update(**kwargs)
+
+dict_maker(a1=1, a2=20, a3=54, a4 =13)
+dict_maker(name='Михаил', age=31, weight=70, eyes_color='blue')
+pprint(my_dict)
+```
+#### Результат:
+![image](https://github.com/legendarykk/Programmnaya_Inzheneriya/assets/146570109/d10a9d11-cfe5-486e-986d-14d2ac2f4b74)
+
+## Задание №3
+### Для решения некоторых задач бывает необходимо разложить строку на отдельные символы. Мы знаем что это можно сделать при помощи split(), у которого более гибкая настройка для разделения для этого, но если нам нужно посимвольно разделить строку без всяких условий, то для этого мы можем использовать кортежи (tuple).
+#### Выполнение
+```python
+input_string = 'HelloWorld'
+result = tuple(input_string)
+print(result)
+print(list(result))
+```
+#### Результат:
+![image](https://github.com/legendarykk/Programmnaya_Inzheneriya/assets/146570109/8bcec254-f1a3-4e85-9543-23175be8375c)
+
+## Задание №4
+### Вовочка решил написать крутую функцию, которая будет писать имя, возраст и место работы, но при этом на вход этой функции будет поступать кортеж. Помогите Вовочке написать эту программу.
+#### Выполнение:
+```python
+def personal_info(name, age, company='unnamed'):
+    print(f"Имя: {name} Возраст: {age} Компания: {company}")
+
+tom = ("Григорий", 22)
+personal_info(*tom)
+
+bob = ("Георгий", 41, "Yandex")
+personal_info(*bob)
+```
+#### Результат:
+![image](https://github.com/legendarykk/Programmnaya_Inzheneriya/assets/146570109/0027743a-678f-48dd-98ca-debf1f7ae66b)
+
+## Задание №5
+### Для сопровождения первых лиц государства X нужен кортеж, но никто не может определиться с порядком машин, поэтому вам нужно написать функцию, которая будет сортировать кортеж, состоящий из целых чисел по возрастанию, и возвращает его. Если хотя бы один элемент не является целым числом, то функция возвращает исходный кортеж.
+#### Выполнение:
+```python
+def tuple_sort(tpl):
+    for elm in tpl:
+        if not isinstance(elm, int):
+            return tpl
+        return tuple(sorted(tpl))
+
+if __name__ == '__main__':
+    print(tuple_sort((5, 5, 3, 1, 9)))
+    print(tuple_sort((5, 5, 2.1, '1', 9)))
+```
+#### Результат:
+![image](https://github.com/legendarykk/Programmnaya_Inzheneriya/assets/146570109/0db7ef2e-7110-4ade-81e3-8300e4b14923)
+
+
+## Самостоятельная работа №1
+## Задание №1
+### При создании сайта у вас возникла потребность обрабатывать данные пользователя в странной форме, а потом переводить их в нужные вам форматы. Вы хотите принимать от пользователя последовательность чисел, разделенных пробелом, а после переформатировать эти данные в список и кортеж. Реализуйте вашу задумку. Для получения начальных данных используйте input(). Результатом программы будет выведенный список и кортеж и значальных данных.
+#### Выполнение:
+```python
+user_input = input("Введите последовательность чисел, разделенных пробелом: ")
+
+numbers_as_strings = user_input.split()
+
+numbers_as_integers = [float(num) for num in numbers_as_strings]
+
+numbers_tuple = tuple(numbers_as_integers)
+
+print("Исходные данные в виде списка:", numbers_as_integers)
+print("Исходные данные в виде кортежа:", numbers_tuple)
+```
+#### Результат:
+![image](https://github.com/legendarykk/Programmnaya_Inzheneriya/assets/146570109/aa90e75c-c4b2-4e44-ba11-83b44df1a2e6)
+
+#### Вывод: Программа запрашивает пользователя ввести последовательность чисел, разделенных пробелом, затем преобразует эти данные в список и кортеж целых чисел. Результат работы программы выводится на экран в виде списка и кортежа из введенных пользователем данных.
+
+## Задание №2
+### Николай знает, что кортежи являются неизменяемыми, но он очень упрямый и всегда хочет доказать, что он прав. Студент решил создать функцию, которая будет удалять первое появление определенного элемента из кортежа по значению и возвращать кортеж без него. Попробуйте повторить шедевр не признающего авторитеты начинающего программиста. Но учтите, что Николай не всегда уверен в наличии элемента в кортеже (в этом случае кортеж вернется функцией в исходном виде).
+#### Выполнение:
+```python
+def remove_element_from_tuple(input_tuple, element_to_remove):
+    if element_to_remove in input_tuple:
+        updated_list = list(input_tuple)
+        updated_list.remove(element_to_remove)
+        return tuple(updated_list)
+    else:
+        return input_tuple
+
+original_tuple = (1, 2, 3, 4, 5)
+element_to_remove = 3
+result_tuple = remove_element_from_tuple(original_tuple, element_to_remove)
+
+print("Исходный кортеж:", original_tuple)
+print(f"Кортеж после удаления элемента {element_to_remove}:", result_tuple)
+
+```
+#### Результат:
+![image](https://github.com/legendarykk/Programmnaya_Inzheneriya/assets/146570109/52f51f5b-c052-401f-9384-44e47f6ec585)
+
+#### Вывод: Эта функция, созданная Николаем, принимает кортеж и значение элемента для удаления. Если элемент присутствует в кортеже, то функция удаляет его первое появление, преобразует кортеж в список, удаляет элемент и возвращает обновленный кортеж. В случае отсутствия элемента, исходный кортеж возвращается без изменений.
+
+## Задание №3
+### Ребята поспорили кто из них одним нажатием на numpad наберет больше повторяющихся цифр, но не понимают, как узнать победителя. Вам им нужно в этом помочь. Дана строка в виде случайной последовательности чисел от 0 до 9 (длина строки минимум 15 символов). Требуется создать словарь, который в качестве ключей будет принимать данные числа (т. е. ключи будут типом int), а в качестве значений – количество этих чисел в имеющейся последовательности. Для построения словаря создайте функцию, принимающую строку из цифр. Функция должна возвратить словарь из 3-х самых часто встречаемых чисел, также эти значения нужно вывести в порядке возрастания ключа.
+#### Выполнение:
+```python
+def count_and_sort_numbers(input_string):
+    numbers_count = {}
+    for digit in input_string:
+        digit = int(digit)
+        numbers_count[digit] = numbers_count.get(digit, 0) + 1
+
+    top_three_numbers = sorted(numbers_count.keys(), key=lambda x: numbers_count[x], reverse=True)[:3]
+    top_three_numbers.sort()
+    return {num: numbers_count[num] for num in top_three_numbers}
+
+input_sequence = "31415926535897932384626433832795"
+result_dict = count_and_sort_numbers(input_sequence)
+
+print("Словарь с тремя самыми часто встречающимися числами:")
+for num, count in result_dict.items():
+    print(f"Число {num}: {count} раз")
+```
+#### Результат:
+![image](https://github.com/legendarykk/Programmnaya_Inzheneriya/assets/146570109/77c39da1-f361-43e4-9703-a971913cdf8b)
+
+#### Вывод: Данная программа считает и сортирует количество повторений каждой цифры в заданной строке чисел, а затем возвращает словарь с тремя самыми часто встречающимися числами, упорядоченными по возрастанию. Полученные результаты выводятся, указывая число и количество его повторений.
+
+## Задание №4
+### Ваш хороший друг владеет офисом со входом по электронным картам, ему нужно чтобы вы написали программу, которая показывала в каком порядке сотрудники входили и выходили из офиса. Определение сотрудника происходит по id. Напишите функцию, которая на вход принимает кортеж и случайный элемент (id), его можно придумать самостоятельно. Требуется вернуть новый кортеж, начинающийся с первого появления элемента в нем и заканчивающийся вторым его появлением включительно. Если элемента нет вовсе – вернуть пустой кортеж. Если элемент встречается только один раз, то вернуть кортеж, который начинается с него и идет до конца исходного.
+#### Выполнение:
+```python
+def extract_employee_log(log_tuple, employee_id):
+    first_occurrence = log_tuple.index(employee_id) if employee_id in log_tuple else -1
+    second_occurrence = log_tuple.index(employee_id, first_occurrence + 1) if first_occurrence != -1 else -1
+
+    if first_occurrence != -1 and second_occurrence != -1:
+        return log_tuple[first_occurrence:second_occurrence + 1]
+    elif first_occurrence != -1 and second_occurrence == -1:
+        return log_tuple[first_occurrence:]
+    else:
+        return ()
+
+employee_log = (1, 2, 3, 4, 2, 5, 6, 2, 7, 8)
+employee_id_to_extract = 2
+result_log = extract_employee_log(employee_log, employee_id_to_extract)
+
+print("Исходный кортеж:", employee_log)
+print(f"Подкортеж для сотрудника с ID {employee_id_to_extract}:", result_log)
+
+```
+#### Результат:
+![image](https://github.com/legendarykk/Programmnaya_Inzheneriya/assets/146570109/dbd820f6-602b-48d8-803c-863cf441358b)
+
+#### Вывод: Эта программа принимает кортеж с записями входа и выхода сотрудников в офис по их ID и случайный элемент ID сотрудника. Затем она возвращает подкортеж, начиная с первого появления этого ID и заканчивая вторым его появлением включительно. Если ID отсутствует в кортеже, программа возвращает пустой кортеж, а если встречается только один раз, возвращается кортеж, начиная с этого элемента и идущий до конца исходного кортежа.
+
+## Задание №5
+### Самостоятельно придумайте и решите задачу, в которой будут обязательно использоваться кортеж или список. Проведите минимум три теста для проверки работоспособности вашей задачи.
+#### Выполнение:
+```python
+def calculate_average_scores(student_data):
+    if not student_data:
+        return []
+    averages = []
+    for student in student_data:
+        student_id, scores = student
+        average_score = sum(scores.values()) / len(scores)
+        averages.append((student_id, average_score))
+    return averages
+
+students = [
+    (1, {'Math': 80, 'History': 90, 'English': 75}),
+    (2, {'Math': 95, 'History': 85, 'English': 92}),
+    (3, {'Math': 78, 'History': 88, 'English': 80}),
+]
+
+result_1 = calculate_average_scores(students)
+result_2 = calculate_average_scores([])
+result_3 = calculate_average_scores([(4, {'Math': 70, 'History': 60, 'English': 65})])
+
+print("Результат 1:", result_1)
+print("Результат 2:", result_2)
+print("Результат 3:", result_3)
+```
+#### Результат:
+![image](https://github.com/legendarykk/Programmnaya_Inzheneriya/assets/146570109/a7957a83-6ae0-4311-87f5-017a0e35e3ba)
+
+#### Вывод: Данная функция, используя список кортежей с данными о студентах и их оценках по разным предметам, вычисляет средний балл для каждого студента и возвращает список кортежей, содержащих идентификаторы студентов и их средние баллы. В случае отсутствия студентов, функция возвращает пустой список, иначе результаты выводятся, предоставляя информацию о средних баллах для каждого студента.
+
+## Общий вывод: 
+Кортежи и списки в Python предоставляют удобные структуры данных для хранения и манипулирования коллекциями элементов. Кортежи являются неизменяемыми, что делает их полезными для представления фиксированных данных, в то время как списки предоставляют гибкость изменения и расширения коллекций. Обе структуры широко используются в программировании для эффективного управления данными, включая хранение, сортировку и фильтрацию, что делает их важными инструментами для разработчиков Python.
